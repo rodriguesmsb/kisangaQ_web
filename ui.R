@@ -1,7 +1,7 @@
 
 ui <- page_navbar(
   title = tags$span(
-    tags$img(src = "logo.png", height = "100px", style = "margin-right:8px; vertical-align:middle;"),
+    tags$img(src = "logo.png", height = "75px", style = "margin-right:8px; vertical-align:middle;"),
     "KISANGA-Q"
   ),
 

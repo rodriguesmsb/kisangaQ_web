@@ -88,6 +88,66 @@ hr {
   opacity: 0.3;
 }
 
+/* ── Carrossel de notícias ───────────────────────────────────────────────── */
+
+#newsCarousel {
+  margin-bottom: 1.5rem;
+}
+
+/* Os botões ficam absolutamente posicionados no carrossel (padrão Bootstrap).
+   O carousel-inner recebe margens laterais iguais à largura dos botões (44px)
+   para que os cards nunca fiquem atrás deles. */
+#newsCarousel .carousel-inner {
+  margin: 0 100px ;
+}
+
+/* Reduz a largura padrão (15%) dos botões para 44px fixos */
+#newsCarousel .carousel-control-prev,
+#newsCarousel .carousel-control-next {
+  width: 30px;
+  background-color: rgba(44, 26, 8, 0.25);
+  border-radius: 4px;
+
+}
+
+#newsCarousel .carousel-control-prev:hover,
+#newsCarousel .carousel-control-next:hover {
+  background-color: rgba(200, 115, 26, 0.6);
+}
+
+/* Ícones dos botões na cor laranja da paleta */
+.news-carousel-ctrl {
+  filter: invert(50%) sepia(80%) saturate(600%) hue-rotate(10deg);
+}
+
+/* Cards dentro do carrossel têm altura igual na mesma linha */
+.news-card {
+  height: 100%;
+}
+
+/* As bolinhas ficam abaixo dos cards, não sobrepostas */
+#newsCarousel .carousel-indicators {
+  position: static;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+#newsCarousel .carousel-indicators [data-bs-target] {
+  background-color: #C8731A;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  opacity: 0.45;
+}
+
+#newsCarousel .carousel-indicators [data-bs-target].active {
+  opacity: 1;
+}
+
 /* ── Value boxes ─────────────────────────────────────────────────────────── */
 .bslib-value-box .value-box-value {
   font-size: 2.2rem;

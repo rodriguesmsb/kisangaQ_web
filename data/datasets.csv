@@ -1,7 +1,7 @@
 name,theme,years,access,description
-"Mortality records","Vital statistics","2010–2023","Restricted","Death certificates with cause of death coded by ICD-10, deidentified at individual level."
-"Live births","Vital statistics","2005–2023","Restricted","Birth records including gestational age, birthweight, and municipality of residence."
-"Hospitalisation records","Health services","2008–2022","Restricted","Inpatient admissions from the national hospital information system (AIH/SIH)."
-"COVID-19 notifications","Infectious disease","2020–2023","Open","Confirmed and suspected COVID-19 cases reported to the national surveillance system."
-"Dengue notifications","Infectious disease","2001–2023","Open","Dengue fever notifications from SINAN, aggregated by municipality and epidemiological week."
-"Socioeconomic indicators","Socioeconomic","2010–2022","Open","Municipal-level indicators from census and administrative records (HDI, income, education)."
+"Registros de mortalidade","Estatísticas vitais","2010–2023","Restrito","Declarações de óbito com causa de morte codificada pela CID-10, desidentificadas no nível individual."
+"Nascidos vivos","Estatísticas vitais","2005–2023","Restrito","Registros de nascimento incluindo idade gestacional, peso ao nascer e município de residência."
+"Internações hospitalares","Serviços de saúde","2008–2022","Restrito","Internações do sistema de informações hospitalares (AIH/SIH)."
+"Notificações de COVID-19","Doenças infecciosas","2020–2023","Aberto","Casos confirmados e suspeitos de COVID-19 notificados ao sistema de vigilância nacional."
+"Notificações de dengue","Doenças infecciosas","2001–2023","Aberto","Notificações de dengue do SINAN, agregadas por município e semana epidemiológica."
+"Indicadores socioeconômicos","Socioeconômico","2010–2022","Aberto","Indicadores municipais de censo e registros administrativos (IDH, renda, educação)."

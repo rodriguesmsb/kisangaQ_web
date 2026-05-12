@@ -1,7 +1,15 @@
+/* ── Palette ─────────────────────────────────────────────────────────────────
+   Orange  : #C8731A
+   Green   : #7A9C38
+   Dark    : #2C1A08
+   Cream   : #FAF4E8
+   Brown   : #8B6432
+   ────────────────────────────────────────────────────────────────────────── */
+
 /* ── Hero banner ─────────────────────────────────────────────────────────── */
 .hero-banner {
-  background: linear-gradient(135deg, #2C6E49 0%, #1a4a30 100%);
-  color: #fff;
+  background: linear-gradient(135deg, #C8731A 0%, #8B6432 100%);
+  color: #FAF4E8;
   padding: 4rem 2rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -11,27 +19,67 @@
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  color: #FAF4E8;
 }
 
 .hero-banner p {
   font-size: 1.2rem;
-  opacity: 0.85;
+  opacity: 0.9;
+}
+
+.hero-logo {
+  display: block;
+  margin: 0 auto 1rem auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
 }
 
 /* ── Navbar ──────────────────────────────────────────────────────────────── */
 .navbar {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 6px rgba(44, 26, 8, 0.18);
+  background-color: #2C1A08 !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: #FAF4E8 !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #C8731A !important;
+}
+
+/* ── Body background ─────────────────────────────────────────────────────── */
+body {
+  background-color: #FAF4E8;
 }
 
 /* ── Cards ───────────────────────────────────────────────────────────────── */
 .card {
   border: none;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(44, 26, 8, 0.08);
   transition: box-shadow 0.2s;
 }
 
 .card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  box-shadow: 0 4px 16px rgba(200, 115, 26, 0.2);
+}
+
+.card-header {
+  background-color: #C8731A;
+  color: #FAF4E8;
+  font-weight: 600;
+}
+
+/* ── Section headings ────────────────────────────────────────────────────── */
+h2, h3 {
+  color: #2C1A08;
+}
+
+hr {
+  border-color: #C8731A;
+  opacity: 0.3;
 }
 
 /* ── Value boxes ─────────────────────────────────────────────────────────── */

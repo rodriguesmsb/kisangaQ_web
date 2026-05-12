@@ -42,6 +42,12 @@
 .navbar .navbar-brand,
 .navbar .nav-link {
   color: #FAF4E8 !important;
+  font-size: 1.1rem;
+}
+
+.navbar .navbar-brand {
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
 .navbar .nav-link:hover,

@@ -1,8 +1,11 @@
+
 ui <- page_navbar(
   title = tags$span(
-    tags$img(src = "logo.png", height = "36px", style = "margin-right:8px; vertical-align:middle;"),
+    tags$img(src = "logo.png", height = "100px", style = "margin-right:8px; vertical-align:middle;"),
     "KISANGA-Q"
   ),
+
+  # Personalização do tema e inclusão de CSS customizado
   theme = bs_theme(
     bootswatch = "flatly",
     primary    = "#C8731A",
@@ -16,14 +19,15 @@ ui <- page_navbar(
     tags$link(rel = "stylesheet", href = "custom.css")
   ),
 
-  # ── Páginas ─────────────────────────────────────────────────────────────────
+  # Navegação principal — cada item corresponde a um módulo UI definido em R/mod_*.R
   nav_panel("Início",   mod_home_ui("home")),
   nav_panel("Catálogo", mod_catalog_ui("catalog")),
   nav_panel("Painel",   mod_dashboard_ui("dashboard")),
 
+  # Links externos no canto direito da barra de navegação
   nav_spacer(),
   nav_item(tags$a(
-    href   = "https://github.com/rodriguesmsb/KisangaQ_web",   # substitua pelo seu repositório
+    href   = "https://github.com/rodriguesmsb/KisangaQ_web",  
     target = "_blank",
     icon("github"), "GitHub"
   ))

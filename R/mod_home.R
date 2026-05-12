@@ -7,21 +7,22 @@
 # =============================================================================
 
 mod_home_ui <- function(id) {
-  ns <- NS(id)  # cria namespace para evitar conflito de IDs entre módulos
+  #cria namespace para evitar conflito de IDs entre módulos
+  ns <- NS(id) 
+
+  # A função tagList() é usada para retornar múltiplos elementos UI como um único objeto
   tagList(
 
-    # ── Hero banner ──────────────────────────────────────────────────────────
     # Faixa de destaque no topo da página com logo e título
     div(class = "hero-banner",
       div(class = "hero-content",
-        # Shiny serve a pasta www/ como raiz — não inclua "www/" no caminho
-        tags$img(src = "logo.png", height = "72px", style = "margin-bottom:1rem;"),
+        tags$img(src = "logo.png", height = "200px", style = "margin-bottom:1rem;"),
         h1("KisangaQ"),
         p("Uma plataforma de análise de dados para comunidades Quilombolas")
       )
     ),
 
-    # ── Corpo principal ──────────────────────────────────────────────────────
+    # Corpo da página com seção "Sobre" e notícias recentes
     div(class = "container-xl py-4",
 
       # Bloco "Sobre" — substitua o texto pelo conteúdo real do projeto
@@ -44,7 +45,10 @@ mod_home_ui <- function(id) {
   )
 }
 
+# O servidor lê o arquivo CSV de notícias e renderiza um card para cada linha
 mod_home_server <- function(id) {
+
+  # A função moduleServer() é usada para criar um servidor modularizado
   moduleServer(id, function(input, output, session) {
 
     # Lê o arquivo de notícias; retorna data frame vazio se não existir
@@ -62,6 +66,7 @@ mod_home_server <- function(id) {
       df <- news()
       if (nrow(df) == 0) return(p("Nenhuma notícia disponível."))
 
+      # Cria uma lista de divs, cada uma contendo um card para uma notícia
       cards <- lapply(seq_len(nrow(df)), function(i) {
         div(class = "col-md-4 mb-4",
           card(

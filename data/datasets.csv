@@ -1,0 +1,7 @@
+name,theme,years,access,description
+"Mortality records","Vital statistics","2010–2023","Restricted","Death certificates with cause of death coded by ICD-10, deidentified at individual level."
+"Live births","Vital statistics","2005–2023","Restricted","Birth records including gestational age, birthweight, and municipality of residence."
+"Hospitalisation records","Health services","2008–2022","Restricted","Inpatient admissions from the national hospital information system (AIH/SIH)."
+"COVID-19 notifications","Infectious disease","2020–2023","Open","Confirmed and suspected COVID-19 cases reported to the national surveillance system."
+"Dengue notifications","Infectious disease","2001–2023","Open","Dengue fever notifications from SINAN, aggregated by municipality and epidemiological week."
+"Socioeconomic indicators","Socioeconomic","2010–2022","Open","Municipal-level indicators from census and administrative records (HDI, income, education)."

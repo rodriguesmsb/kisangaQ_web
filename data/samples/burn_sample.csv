@@ -1,0 +1,11 @@
+estado,municipio,date,means_monthly_diasemchuva,means_monthly_precipitacao,means_monthly_riscofogo,means_monthly_frp,bioma
+amazonas,manacapuru,1999-02-01,NA,NA,NA,NA,Amazônia
+mato grosso,sao pedro da cipa,2000-07-01,NA,NA,NA,NA,Cerrado
+para,bom jesus do tocantins,2012-09-01,NA,NA,NA,NA,Amazônia
+santa catarina,marema,2005-10-01,NA,NA,NA,NA,Mata Atlântica
+minas gerais,montezuma,2003-09-01,NA,NA,NA,NA,Cerrado
+para,mojui dos campos,2004-09-01,NA,NA,NA,NA,Amazônia
+rio grande do sul,caseiros,2003-08-01,NA,NA,NA,NA,Mata Atlântica
+mato grosso do sul,chapadao do sul,2017-02-01,0,9,0,NA,Cerrado
+bahia,barra do choca,2021-05-01,1.5,0,0.75,8.85,Mata Atlântica
+sao paulo,sao jose da bela vista,2002-05-01,NA,NA,NA,NA,Cerrado

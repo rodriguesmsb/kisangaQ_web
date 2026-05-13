@@ -133,13 +133,58 @@ mod_catalog_server <- function(id) {
       if (is.null(sel)) return(NULL)
 
       row <- filtered()[sel, ]
-      card(
-        card_header(row$name),
-        card_body(
-          p(tags$b("Tema: "),      row$theme),
-          p(tags$b("Anos: "),      row$years),
-          p(tags$b("Acesso: "),    row$access),
-          p(tags$b("Descrição: "), row$description)
+
+      # Tenta carregar o arquivo de amostra, se existir
+      sample_tbl <- NULL
+      if (!is.null(row$sample) && nzchar(trimws(row$sample))) {
+        sample_path <- file.path("data/samples", trimws(row$sample))
+        if (file.exists(sample_path)) {
+          sample_tbl <- read.csv(sample_path, stringsAsFactors = FALSE, encoding = "UTF-8")
+        }
+      }
+
+      tagList(
+        card(
+          card_header(row$name),
+          card_body(
+            p(tags$b("Tema: "),      row$theme),
+            p(tags$b("Anos: "),      row$years),
+            p(tags$b("Acesso: "),    row$access),
+            p(tags$b("Descrição: "), row$description)
+          )
+        ),
+        if (!is.null(sample_tbl)) {
+          card(
+            class = "mt-3",
+            card_header("Prévia dos dados"),
+            card_body(
+              DTOutput(session$ns("sample_table"))
+            )
+          )
+        }
+      )
+    })
+
+    # Renderiza a tabela de amostra apenas se um arquivo válido for encontrado
+    output$sample_table <- renderDT({
+      sel <- input$table_rows_selected
+      if (is.null(sel)) return(NULL)
+
+      row <- filtered()[sel, ]
+      if (is.null(row$sample) || !nzchar(trimws(row$sample))) return(NULL)
+
+      sample_path <- file.path("data/samples", trimws(row$sample))
+      if (!file.exists(sample_path)) return(NULL)
+
+      df <- read.csv(sample_path, stringsAsFactors = FALSE, encoding = "UTF-8")
+      datatable(
+        df,
+        selection = "none",
+        rownames  = FALSE,
+        options   = list(
+          pageLength = 10,
+          dom        = "t",
+          scrollX    = TRUE
         )
       )
     })

@@ -30,7 +30,7 @@ mod_catalog_ui <- function(id) {
         theme    = "success"
       ),
       value_box(
-        title    = "Dados de acesso aberto",
+        title    = "Dados de  acesso aberto",
         value    = textOutput(ns("n_open")),
         showcase = bsicons::bs_icon("unlock"),
         theme    = "info"
@@ -77,7 +77,8 @@ mod_catalog_server <- function(id) {
           theme       = character(0),
           years       = character(0),
           access      = character(0),
-          description = character(0)
+          description = character(0),
+          link       = character(0)
         )
       }
     })
@@ -108,12 +109,12 @@ mod_catalog_server <- function(id) {
 
     # Renderiza a tabela interativa (exibe apenas as colunas de resumo)
     output$table <- renderDT({
-      df <- filtered()[, c("name", "theme", "years", "access")]
+      df <- filtered()[, c("name", "theme", "years", "access", "link")]
       datatable(
         df,
         selection = "single",   # permite selecionar uma linha para ver detalhes
         rownames  = FALSE,
-        colnames  = c("Conjunto de dados", "Tema", "Anos", "Acesso"),
+        colnames  = c("Conjunto de dados", "Tema", "Anos", "Acesso", "Links"),
         options   = list(
           pageLength = 10,
           dom        = "tip",

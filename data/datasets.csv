@@ -1,7 +1,5 @@
-name,theme,years,access,description
-"Registros de mortalidade","Estatísticas vitais","2010–2023","Restrito","Declarações de óbito com causa de morte codificada pela CID-10, desidentificadas no nível individual."
-"Nascidos vivos","Estatísticas vitais","2005–2023","Restrito","Registros de nascimento incluindo idade gestacional, peso ao nascer e município de residência."
-"Internações hospitalares","Serviços de saúde","2008–2022","Restrito","Internações do sistema de informações hospitalares (AIH/SIH)."
-"Notificações de COVID-19","Doenças infecciosas","2020–2023","Aberto","Casos confirmados e suspeitos de COVID-19 notificados ao sistema de vigilância nacional."
-"Notificações de dengue","Doenças infecciosas","2001–2023","Aberto","Notificações de dengue do SINAN, agregadas por município e semana epidemiológica."
-"Indicadores socioeconômicos","Socioeconômico","2010–2022","Aberto","Indicadores municipais de censo e registros administrativos (IDH, renda, educação)."
+name,theme,years,access,description,link
+Acidentes por animais peçonhentos,Agravos de notificação,2020–2024,Aberto,Notificações individualizadas de acidentes causados por animais peçonhentos no Brasil,
+Hanseniase,Doenças infecciosas,2020–2026,Aberto,Notificações individualizadas de casos de hanseníase,
+Tuberculse,Doenças infecciosas,2020–2024,Aberto,Notificações individualizadas de casos de tuberculose,
+Violência ,Agravos de notificação,2020–2024,Aberto,Notificações individualizadas de casos suspeito ou confirmado de violência interpessoal ou autoprovocada,

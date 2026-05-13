@@ -28,7 +28,7 @@ mod_home_ui <- function(id) {
       )
     ),
 
-    # ── Corpo principal ──────────────────────────────────────────────────────
+    # Corpo da página — container centralizado com conteúdo sobre o projeto e o carrossel de notícias
     div(class = "container-xl py-4",
 
       # Bloco "Sobre" — substitua o Lorem ipsum pelo texto real do projeto
@@ -43,7 +43,7 @@ mod_home_ui <- function(id) {
         )
       ),
 
-      # ── Carrossel de notícias ──────────────────────────────────────────────
+      # Carrossel de notícias — o conteúdo é gerado dinamicamente pelo servidor a partir do CSV
       # O uiOutput é preenchido pelo servidor com o HTML do carrossel Bootstrap 5
       h3("Últimas Notícias"),
       hr(),
@@ -103,7 +103,7 @@ mod_home_server <- function(id) {
         )
       })
 
-      # ── Indicadores de posição (bolinhas) ─────────────────────────────────
+  
       # Um botão por slide; o primeiro começa ativo
       indicators <- lapply(seq_along(groups), function(g) {
         btn_class <- if (g == 1) "active" else ""

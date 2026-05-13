@@ -109,12 +109,12 @@ mod_catalog_server <- function(id) {
 
     # Renderiza a tabela interativa (exibe apenas as colunas de resumo)
     output$table <- renderDT({
-      df <- filtered()[, c("name", "theme", "years", "access", "link")]
+      df <- filtered()[, c("name", "theme", "years", "access", "link", "fonte")]
       datatable(
         df,
         selection = "single",   # permite selecionar uma linha para ver detalhes
         rownames  = FALSE,
-        colnames  = c("Conjunto de dados", "Tema", "Anos", "Acesso", "Links"),
+        colnames  = c("Conjunto de dados", "Tema", "Anos", "Acesso", "Links", "Fonte"),
         options   = list(
           pageLength = 10,
           dom        = "tip",

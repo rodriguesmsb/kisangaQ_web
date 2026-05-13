@@ -1,5 +1,10 @@
-name,theme,years,access,description,link
-Acidentes por animais peçonhentos,Agravos de notificação,2020–2024,Aberto,Notificações individualizadas de acidentes causados por animais peçonhentos no Brasil,
-Hanseniase,Doenças infecciosas,2020–2026,Aberto,Notificações individualizadas de casos de hanseníase,
-Tuberculse,Doenças infecciosas,2020–2024,Aberto,Notificações individualizadas de casos de tuberculose,
-Violência ,Agravos de notificação,2020–2024,Aberto,Notificações individualizadas de casos suspeito ou confirmado de violência interpessoal ou autoprovocada,
+name,theme,years,access,description,link,fonte
+Acidentes por animais peçonhentos,Agravos de notificação,2020 – 2024,Aberto,Notificações individualizadas de acidentes causados por animais peçonhentos no Brasil,,DATASUS
+Hanseniase,Doenças infecciosas,2020 – 2026,Aberto,Notificações individualizadas de casos de hanseníase,,DATASUS
+Tuberculse,Doenças infecciosas,2020 – 2024,Aberto,Notificações individualizadas de casos de tuberculose,,DATASUS
+Violência ,Agravos de notificação,2020 – 2024,Aberto,Notificações individualizadas de casos suspeito ou confirmado de violência interpessoal ou autoprovocada,,DATASUS
+Nutrição,Informação nutricional,2008 – 2017,Aberto,Estado nutricional de crianças de 0 a 5 anos,,CIDACS
+Temperatura,Clima,1980 – 2026 ,Aberto,Média mensal da tempatura para os municipios brasileiros,,ERA5
+Pluviosidade,Clima,1980 – 2026 ,Aberto,Média mensal da pluviosidade para os municipios brasileiros,,CHIRPS
+NDVI,Ambiente,2010 – 2026,Aberto,Média mensal do indice de vegetação normalizado para os municipios brasileiros,,MODIS
+Queimadas,Ambiente,2020 – 2025,Aberto,Média mensal de focos de queimadas para os municipios brasileiros,,INPE

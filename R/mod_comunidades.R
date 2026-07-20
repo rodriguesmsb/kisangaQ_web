@@ -10,7 +10,7 @@ read_comunidades_points <- function(path = "data/comunidades_quilombola.json") {
   empty <- data.frame(
     nm_aglom = character(0),
     nm_uf = character(0),
-    cd_munic = character(0),
+    nm_munic = character(0),
     lat_d = numeric(0),
     long_d = numeric(0),
     stringsAsFactors = FALSE
@@ -25,7 +25,8 @@ read_comunidades_points <- function(path = "data/comunidades_quilombola.json") {
   required <- c(
     "properties.nm_aglom",
     "properties.nm_uf",
-    "properties.cd_munic",
+    "properties.nm_munic",
+    "properties.bioma",
     "properties.lat_d",
     "properties.long_d"
   )
@@ -37,7 +38,8 @@ read_comunidades_points <- function(path = "data/comunidades_quilombola.json") {
   points <- data.frame(
     nm_aglom = features[["properties.nm_aglom"]],
     nm_uf = features[["properties.nm_uf"]],
-    cd_munic = features[["properties.cd_munic"]],
+    nm_munic = features[["properties.nm_munic"]],
+    bioma = features[["properties.bioma"]],
     lat_d = as.numeric(features[["properties.lat_d"]]),
     long_d = as.numeric(features[["properties.long_d"]]),
     stringsAsFactors = FALSE
@@ -61,8 +63,8 @@ comunidade_popup <- function(df) {
   paste0(
     "<strong>", htmltools::htmlEscape(name), "</strong><br/>",
     "<strong>UF:</strong> ", htmltools::htmlEscape(df$nm_uf), "<br/>",
-    "<strong>Codigo municipal:</strong> ",
-    htmltools::htmlEscape(df$cd_munic), "<br/>",
+    "<strong>Codigo municipal:</strong> ", htmltools::htmlEscape(df$nm_munic), "<br/>",
+    "<strong>Bioma:</strong> ", htmltools::htmlEscape(df$bioma), "<br/>",
     "<strong>Latitude:</strong> ", sprintf("%.5f", df$lat_d), "<br/>",
     "<strong>Longitude:</strong> ", sprintf("%.5f", df$long_d)
   )
@@ -156,12 +158,12 @@ mod_comunidades_server <- function(id) {
         div(
           class = "comunidades-stat",
           span(class = "comunidades-stat-value", format(nrow(df), big.mark = ".")),
-          span(class = "comunidades-stat-label", "pontos no mapa")
+          span(class = "comunidades-stat-label", "número de comunidades")
         ),
         div(
           class = "comunidades-stat",
           span(class = "comunidades-stat-value", format(named, big.mark = ".")),
-          span(class = "comunidades-stat-label", "com nm_aglom")
+          span(class = "comunidades-stat-label", "com nome informado")
         ),
         div(
           class = "comunidades-stat",

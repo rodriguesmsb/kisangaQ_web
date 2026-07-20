@@ -24,6 +24,8 @@ ui <- page_navbar(
   nav_panel("Catálogo", mod_catalog_ui("catalog")),
   nav_panel("Comunidades", mod_comunidades_ui("comunidades")),
   nav_panel("Painel",   mod_dashboard_ui("dashboard")),
+  nav_panel("Fale conosco", mod_suggestions_ui("suggestions")),
+ 
 
   # Links externos no canto direito da barra de navegação
   nav_spacer(),

@@ -8,3 +8,5 @@ source("R/mod_home.R")
 source("R/mod_catalog.R")
 source("R/mod_comunidades.R")
 source("R/mod_dashboard.R")
+source("R/mod_suggestions.R")
+

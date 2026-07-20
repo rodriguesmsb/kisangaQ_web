@@ -1,0 +1,19 @@
+{
+  "type": "Feature",
+  "properties": {
+    "lat_d": -10.555,
+    "long_d": -67.5555,
+    "nm_aglom": "teste2",
+    "nm_uf": "AMAZONAS",
+    "cd_munic": "13950000"
+  },
+  "geometry": {
+    "type": "Point",
+    "coordinates": [
+      -67.5555,
+      -10.555
+    ]
+  },
+  "submitted_at": "2026-07-20T14:12:51-0400",
+  "source": "KisangaQ_web"
+}

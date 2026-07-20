@@ -153,3 +153,67 @@ hr {
   font-size: 2.2rem;
   font-weight: 700;
 }
+
+/* ── Comunidades map ────────────────────────────────────────────────────── */
+.comunidades-page h2 {
+  margin-bottom: 1rem;
+}
+
+.comunidades-map-panel {
+  min-height: 72vh;
+}
+
+.comunidades-map-panel .leaflet {
+  border: 1px solid rgba(44, 26, 8, 0.16);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(44, 26, 8, 0.08);
+}
+
+.comunidades-summary {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.comunidades-stat {
+  border-left: 4px solid #7A9C38;
+  padding: 0.4rem 0 0.4rem 0.75rem;
+}
+
+.comunidades-stat-value,
+.comunidades-stat-label {
+  display: block;
+}
+
+.comunidades-stat-value {
+  color: #2C1A08;
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.comunidades-stat-label {
+  color: #6F5A43;
+  font-size: 0.9rem;
+}
+
+.comunidades-new-community {
+  margin-top: 0.25rem;
+}
+
+.comunidades-new-community h5 {
+  color: #2C1A08;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+
+.comunidades-new-community .form-group,
+.comunidades-new-community .shiny-input-container {
+  margin-bottom: 0.75rem;
+  width: 100%;
+}
+
+.comunidades-new-community .alert {
+  font-size: 0.9rem;
+  padding: 0.65rem 0.75rem;
+}

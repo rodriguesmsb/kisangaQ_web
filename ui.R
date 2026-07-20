@@ -22,6 +22,7 @@ ui <- page_navbar(
   # Navegação principal — cada item corresponde a um módulo UI definido em R/mod_*.R
   nav_panel("Início",   mod_home_ui("home")),
   nav_panel("Catálogo", mod_catalog_ui("catalog")),
+  nav_panel("Comunidades", mod_comunidades_ui("comunidades")),
   nav_panel("Painel",   mod_dashboard_ui("dashboard")),
 
   # Links externos no canto direito da barra de navegação

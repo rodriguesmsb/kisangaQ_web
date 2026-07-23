@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Where are Quilombola communities?</title>
+
+  <!-- load the CSS files -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+  <!-- This makes the page work better on phones and tablets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+
+<body>
+  <main class="story-container">
+    <section class="intro">
+      <p class="eyebrow">KISANGA-Q Data Story</p>
+      <h1>Where are Quilombola communities in Brazil?</h1>
+      <p>
+        This story uses official data to show how Quilombola communities and
+        inhabitants are distributed across Brazilian states and biomes.
+      </p>
+    </section>
+
+    <!-- Controls for selecting metric and biome -->
+    <section class="controls">
+      <label>
+        Metric
+        <select id="metric-select">
+          <option value="n_communities">Number of communities</option>
+          <option value="n_inhabitants">Number of inhabitants</option>
+        </select>
+      </label>
+
+      <label>
+        Biome
+        <select id="biome-select">
+          <option value="All biomes">All biomes</option>
+        </select>
+      </label>
+    </section>
+
+    <!-- This section will include the leaflet map -->
+    <section class="visual-section">
+      <div id="map"></div>
+        <script
+          src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+        </script>
+        <script>
+          // Create the map.
+          // The first value is latitude, the second is longitude.
+          // These coordinates roughly center the map on Brazil.
+          const map = L.map("map").setView([-14.2350, -51.9253], 4);
+
+          // Add a background map.
+          // OpenStreetMap provides the map tiles.
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 18,
+            attribution: "&copy; OpenStreetMap contributors"
+            }).addTo(map);
+  </script>
+
+    
+       
+    </section>
+
+    <section class="notes">
+      <h2>How to read this map</h2>
+      <p>
+        Darker states have higher values for the selected metric. Use the menus
+        to switch between the number of Quilombola communities and the number
+        of Quilombola inhabitants.
+      </p>
+
+      <h2>Limitations</h2>
+      <ul>
+        <li>Counts depend on the completeness and update frequency of official data sources.</li>
+        <li>State-level aggregation may hide important differences within each state.</li>
+        <li>Biome-level summaries depend on the territorial classification available in the input data.</li>
+        <li>The map shows distribution, not causal relationships.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="story.js"></script>
+</body>
+</html>

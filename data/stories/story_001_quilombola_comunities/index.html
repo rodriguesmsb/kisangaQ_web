@@ -44,26 +44,7 @@
 
     <!-- This section will include the leaflet map -->
     <section class="visual-section">
-      <div id="map"></div>
-        <script
-          src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-        </script>
-        <script>
-          // Create the map.
-          // The first value is latitude, the second is longitude.
-          // These coordinates roughly center the map on Brazil.
-          const map = L.map("map").setView([-14.2350, -51.9253], 4);
-
-          // Add a background map.
-          // OpenStreetMap provides the map tiles.
-          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            maxZoom: 18,
-            attribution: "&copy; OpenStreetMap contributors"
-            }).addTo(map);
-  </script>
-
-    
-       
+      <div id="map"></div>   
     </section>
 
     <section class="notes">
@@ -83,8 +64,22 @@
       </ul>
     </section>
   </main>
+  <script
+          src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+        </script>
+        <script>
+          // Create the map.
+          // The first value is latitude, the second is longitude.
+          // These coordinates roughly center the map on Brazil.
+          map = L.map("map").setView([-14.2350, -51.9253], 4);
 
-  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+          // Add a background map.
+          // OpenStreetMap provides the map tiles.
+          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 18,
+            attribution: "&copy; OpenStreetMap contributors"
+            }).addTo(map);
+          </script>
   <script src="story.js"></script>
 </body>
 </html>

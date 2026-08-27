@@ -180,7 +180,7 @@ mod_comunidades_server <- function(id) {
       marker_color <- if (selected_one) "#7A9C38" else "#C8731A"
 
       map <- leaflet::leaflet(options = leaflet::leafletOptions(preferCanvas = TRUE)) |>
-        leaflet::addProviderTiles(leaflet::providers$CartoDB.Positron)
+        leaflet::addTiles()
 
       if (nrow(df) == 0) {
         return(

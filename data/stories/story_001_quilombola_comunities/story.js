@@ -1,6 +1,11 @@
 // path to the municipalities data file
 const municipalitiesFile = "brazil_municipalities.json";
 
+
+// create a function to fill map according to 
+
+
+
 // load the municipalities data
 fetch(municipalitiesFile)
 .then(response => response.json())

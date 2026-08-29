@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Where are Quilombola communities?</title>
+  <title>Onde estão as comunidades Quilombolas?</title>
 
   <!-- load the CSS files -->
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
 
   <!-- This makes the page work better on phones and tablets -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,67 +21,63 @@
       <p class="eyebrow">KISANGA-Q storytelling</p>
       <h1>Onde estão as comunidades Quilombolas?</h1>
       <p>
-        Esta história usa dados oficiais para mostrar como as comunidades e
-        habitantes Quilombolas estão distribuídos pelos estados e biomas brasileiros.
+        Esta história usa a base de comunidades quilombolas para mostrar quantas
+        comunidades aparecem no conjunto de dados e como elas se distribuem pelo
+        território brasileiro.
       </p>
     </section>
 
-    <!-- Controls for selecting metric and biome -->
-    <section class="controls">
-      <label>
-        Métrica
-        <select id="metric-select">
-          <option value="n_communities">Número de comunidades</option>
-          <option value="n_inhabitants">Número de habitantes</option>
-        </select>
-      </label>
-
-      <label>
-        Bioma
-        <select id="biome-select">
-          <option value="All biomes">Todos</option>
-        </select>
-      </label>
+    <section class="story-stats" aria-live="polite">
+      <article class="total-card">
+        <span id="total-communities">...</span>
+        <p>comunidades quilombolas mapeadas na base.</p>
+      </article>
+      <p class="lead-text">
+        A seguir, a mesma base é resumida por estados e biomas para revelar onde
+        essas comunidades se concentram antes de explorarmos sua localização no mapa.
+      </p>
     </section>
 
-    <!-- This section will include the leaflet map -->
+    <section class="breakdown-grid">
+      <article>
+        <h2>Distribuição por estado</h2>
+        <div id="state-breakdown" class="breakdown-list"></div>
+      </article>
+
+      <article>
+        <h2>Distribuição por bioma</h2>
+        <div id="biome-breakdown" class="breakdown-list"></div>
+      </article>
+    </section>
+
     <section class="visual-section">
+      <h2>Comunidades no território</h2>
+      <p>
+        O mapa mostra cada comunidade como ponto. Os agrupamentos facilitam a leitura
+        das áreas com maior concentração de registros.
+      </p>
       <div id="map"></div>   
     </section>
 
     <section class="notes">
       <h2>Como ler este mapa</h2>
       <p>
-        Estados mais escuros têm valores mais altos para a métrica selecionada. Use os menus
-        para alternar entre o número de comunidades Quilombolas e o número
-        de habitantes Quilombolas.
+        Aproxime o mapa para desfazer os agrupamentos e ver os pontos individuais.
+        Clique em uma comunidade para consultar nome, município, UF, bioma e situação
+        fundiária informada na base.
       </p>
 
       <h2>Limitações</h2>
       <ul>
-        <li>Os contagens dependem da completude e da frequência de atualização das fontes de dados oficiais.</li>
-        <li>A agregação em nível estadual pode ocultar diferenças importantes dentro de cada estado.</li>
-        <li>Os resumos em nível de bioma dependem da classificação territorial disponível nos dados de entrada.</li>
-        <li>O mapa mostra a distribuição, não relações causais.</li>
+        <li>As contagens dependem da completude e da frequência de atualização da base.</li>
+        <li>A agregação por estado pode ocultar diferenças importantes dentro de cada território.</li>
+        <li>Nem todos os registros têm todos os campos de identificação preenchidos.</li>
+        <li>O mapa mostra distribuição espacial, não relações causais.</li>
       </ul>
     </section>
   </main>
-  <script
-          src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-        </script>
-        <script>
-          // Create the map.
-          // The first value is latitude, the second is longitude.
-          // These coordinates roughly center the map on Brazil.
-          map = L.map("map").setView([-14.2350, -51.9253], 4);
-
-          // Add a background map.
-          // OpenStreetMap provides the map tiles.
-          L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-            maxZoom: 18,
-            attribution: "&copy; OpenStreetMap contributors"
-            }).addTo(map);
-          </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
   <script src="story.js"></script>
 </body>
 </html>

@@ -6,6 +6,5 @@ library(dplyr)
 # Load module files
 source("R/mod_home.R")
 source("R/mod_catalog.R")
-source("R/mod_comunidades.R")
+source("R/mod_3Dquilombolas.R")
 source("R/mod_suggestions.R")
-

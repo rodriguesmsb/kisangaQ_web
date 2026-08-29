@@ -42,6 +42,7 @@ read_comunidades_points <- function(path = "data/comunidades_quilombola.json") {
     bioma = features[["properties.bioma"]],
     lat_d = as.numeric(features[["properties.lat_d"]]),
     long_d = as.numeric(features[["properties.long_d"]]),
+    status_fundiario = features[["properties.dados_pe14"]],
     stringsAsFactors = FALSE
   )
 
@@ -66,7 +67,8 @@ comunidade_popup <- function(df) {
     "<strong>Codigo municipal:</strong> ", htmltools::htmlEscape(df$nm_munic), "<br/>",
     "<strong>Bioma:</strong> ", htmltools::htmlEscape(df$bioma), "<br/>",
     "<strong>Latitude:</strong> ", sprintf("%.5f", df$lat_d), "<br/>",
-    "<strong>Longitude:</strong> ", sprintf("%.5f", df$long_d)
+    "<strong>Longitude:</strong> ", sprintf("%.5f", df$long_d), "<br/>",
+    "<strong>Status fundiário:</strong> ", htmltools::htmlEscape(df$status_fundiario), "<br/>"
   )
 }
 

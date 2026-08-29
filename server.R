@@ -3,5 +3,4 @@ server <- function(input, output, session) {
   mod_catalog_server("catalog")
   mod_comunidades_server("comunidades")
   mod_suggestions_server("suggestions")
-  mod_dashboard_server("dashboard")
 }

@@ -74,6 +74,45 @@
         <li>Nem todos os registros têm todos os campos de identificação preenchidos.</li>
         <li>O mapa mostra distribuição espacial, não relações causais.</li>
       </ul>
+
+      <h2>Sua comunidade nao esta aqui?</h2>
+      <p class="suggestions-intro">
+        Insira as informações sobre a sua comunidade para que a equipe possa
+        revisar o registro e atualizar o mapa com os novos dados.
+      </p>
+      <form id="suggestions-form" class="suggestions-form" novalidate>
+        <div class="suggestions-fields">
+          <label class="suggestions-field suggestions-field--wide" for="new_nm_aglom">
+            Nome da comunidade
+            <input id="new_nm_aglom" name="new_nm_aglom" type="text" placeholder="Nome" />
+          </label>
+
+          <label class="suggestions-field" for="new_uf">
+            UF
+            <select id="new_uf" name="new_uf">
+              <option value="">Selecione</option>
+            </select>
+          </label>
+
+          <label class="suggestions-field" for="new_cd_munic">
+            Codigo municipal
+            <input id="new_cd_munic" name="new_cd_munic" type="text" placeholder="Ex.: 1500800" />
+          </label>
+
+          <label class="suggestions-field" for="new_lat">
+            Latitude
+            <input id="new_lat" name="new_lat" type="number" min="-90" max="90" step="0.000001" />
+          </label>
+
+          <label class="suggestions-field" for="new_long">
+            Longitude
+            <input id="new_long" name="new_long" type="number" min="-180" max="180" step="0.000001" />
+          </label>
+        </div>
+
+        <button class="suggestions-submit" type="submit">Enviar</button>
+        <div id="submit-status" class="submit-status" role="status" aria-live="polite"></div>
+      </form>
     </section>
   </main>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

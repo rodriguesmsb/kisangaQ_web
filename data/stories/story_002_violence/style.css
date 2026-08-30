@@ -1,0 +1,450 @@
+:root {
+  --ink: #18211f;
+  --muted: #5c6763;
+  --page: #f6f7f3;
+  --surface: #ffffff;
+  --surface-soft: #eef3ee;
+  --border: #d9dfd8;
+  --orange: #c8731a;
+  --green: #2f8a5b;
+  --red: #b83232;
+  --blue: #2b6cb0;
+  --shadow: 0 12px 28px rgba(24, 33, 31, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+  letter-spacing: 0;
+}
+
+body {
+  background: var(--page);
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+}
+
+.story-container {
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: 48px 24px 64px;
+}
+
+.story-hero {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+}
+
+.eyebrow {
+  color: var(--orange);
+  font-size: 0.82rem;
+  font-weight: 800;
+  margin: 0 0 0.75rem;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  line-height: 1.08;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  max-width: 880px;
+}
+
+h2 {
+  font-size: 1.45rem;
+}
+
+.lead-text,
+.section-heading p,
+.notes {
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+.lead-text {
+  font-size: 1.18rem;
+  margin: 1.2rem 0 0;
+  max-width: 860px;
+}
+
+.summary-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(240px, 1.45fr) repeat(3, minmax(155px, 1fr));
+  margin: 30px 0 40px;
+}
+
+.metric-card,
+.correlation-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 1.15rem;
+}
+
+.metric-card {
+  min-height: 136px;
+}
+
+.metric-card--total {
+  border-left: 6px solid var(--orange);
+}
+
+.metric-card span,
+.correlation-card span {
+  color: var(--ink);
+  display: block;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 850;
+  line-height: 1;
+}
+
+.metric-card:not(.metric-card--total) span {
+  color: var(--blue);
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.metric-card p,
+.correlation-card p,
+.correlation-card small {
+  color: var(--muted);
+  display: block;
+  line-height: 1.45;
+  margin: 0.65rem 0 0;
+}
+
+.visual-section {
+  margin-top: 40px;
+}
+
+.section-heading {
+  align-items: end;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.section-heading p {
+  margin: 0.55rem 0 0;
+  max-width: 780px;
+}
+
+.map-control {
+  color: var(--ink);
+  display: grid;
+  flex: 0 0 245px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  gap: 0.35rem;
+}
+
+.map-control select {
+  appearance: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 650;
+  min-height: 44px;
+  padding: 0.55rem 2.35rem 0.55rem 0.75rem;
+}
+
+.map-shell,
+.chart-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.map-shell {
+  position: relative;
+}
+
+#map {
+  height: 620px;
+  position: relative;
+  width: 100%;
+}
+
+.map-legend {
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  bottom: 18px;
+  box-shadow: 0 8px 18px rgba(24, 33, 31, 0.12);
+  color: var(--ink);
+  display: grid;
+  gap: 0.45rem;
+  max-width: min(245px, calc(100% - 36px));
+  padding: 0.85rem;
+  position: absolute;
+  right: 18px;
+  z-index: 450;
+}
+
+.map-legend strong {
+  font-size: 0.92rem;
+}
+
+.legend-item {
+  align-items: center;
+  display: grid;
+  font-size: 0.85rem;
+  gap: 0.45rem;
+  grid-template-columns: 22px 1fr;
+}
+
+.legend-swatch {
+  border: 1px solid rgba(24, 33, 31, 0.16);
+  border-radius: 4px;
+  height: 14px;
+  width: 22px;
+}
+
+.legend-swatch--missing {
+  background: #d6d9d2;
+}
+
+.leaflet-popup-content {
+  color: var(--ink);
+  min-width: 220px;
+}
+
+.leaflet-popup-content strong,
+.leaflet-popup-content span {
+  display: block;
+}
+
+.leaflet-popup-content span {
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+.leaflet-popup-content dl {
+  display: grid;
+  gap: 0.25rem 0.7rem;
+  grid-template-columns: 1fr auto;
+  margin: 0.75rem 0 0;
+}
+
+.leaflet-popup-content dt {
+  color: var(--muted);
+}
+
+.leaflet-popup-content dd {
+  font-weight: 800;
+  margin: 0;
+}
+
+.chart-panel {
+  padding: 1rem;
+}
+
+#ndvi-bars {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.ndvi-row {
+  align-items: center;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 54px minmax(0, 1fr) 82px;
+  min-height: 30px;
+}
+
+.ndvi-state {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.ndvi-track {
+  background: var(--surface-soft);
+  border-radius: 999px;
+  height: 14px;
+  overflow: hidden;
+  position: relative;
+}
+
+.ndvi-zero {
+  background: rgba(24, 33, 31, 0.35);
+  bottom: 0;
+  left: 50%;
+  position: absolute;
+  top: 0;
+  width: 2px;
+  z-index: 2;
+}
+
+.ndvi-bar {
+  border-radius: 999px;
+  bottom: 2px;
+  min-width: 2px;
+  position: absolute;
+  top: 2px;
+}
+
+.ndvi-bar.is-positive {
+  background: var(--green);
+}
+
+.ndvi-bar.is-negative {
+  background: var(--red);
+}
+
+.ndvi-row strong {
+  color: var(--muted);
+  font-size: 0.93rem;
+  text-align: right;
+}
+
+.correlation-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(190px, 0.34fr) minmax(0, 1fr);
+}
+
+.correlation-card {
+  align-self: start;
+  border-left: 6px solid var(--blue);
+}
+
+.correlation-card span {
+  color: var(--blue);
+}
+
+.chart-panel--scatter {
+  min-height: 360px;
+  padding: 0.75rem;
+}
+
+.chart-panel svg {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.plot-background {
+  fill: #fbfcfa;
+}
+
+.axis-grid line {
+  stroke: #dfe5dd;
+}
+
+.axis-grid text,
+.axis-tick text,
+.axis-title {
+  fill: var(--muted);
+  font-size: 0.78rem;
+}
+
+.axis-line,
+.axis-tick line {
+  stroke: #9aa69e;
+}
+
+.trend-line {
+  stroke: var(--orange);
+  stroke-dasharray: 7 6;
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.scatter-point circle {
+  fill: var(--blue);
+  fill-opacity: 0.78;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+}
+
+.scatter-point.is-labeled circle {
+  fill: var(--red);
+  fill-opacity: 0.88;
+}
+
+.scatter-point text {
+  fill: var(--ink);
+  font-size: 0.76rem;
+  font-weight: 800;
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-linejoin: round;
+  stroke-width: 4px;
+}
+
+.notes {
+  margin-top: 42px;
+}
+
+.notes h2 {
+  color: var(--ink);
+  font-size: 1.25rem;
+}
+
+.notes ul {
+  margin: 0.75rem 0 0;
+  padding-left: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .summary-grid,
+  .correlation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .map-control {
+    flex-basis: auto;
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 620px) {
+  .story-container {
+    padding: 36px 16px 48px;
+  }
+
+  h1 {
+    font-size: 2.35rem;
+  }
+
+  .lead-text {
+    font-size: 1.05rem;
+  }
+
+  #map {
+    height: 500px;
+  }
+
+  .map-legend {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .ndvi-row {
+    grid-template-columns: 42px minmax(0, 1fr) 74px;
+    gap: 0.5rem;
+  }
+
+  .axis-grid text,
+  .axis-tick text,
+  .axis-title {
+    font-size: 0.72rem;
+  }
+}

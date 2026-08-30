@@ -125,6 +125,116 @@ function initMap(features) {
   }
 }
 
+function populateSuggestionUf(features) {
+  const select = document.getElementById("new_uf");
+
+  if (!select) {
+    return;
+  }
+
+  const states = [...new Set(features
+    .map((feature) => cleanText(feature.properties.nm_uf, ""))
+    .filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+  select.innerHTML = [
+    '<option value="">Selecione</option>',
+    ...states.map((state) => `<option value="${escapeHtml(state)}">${escapeHtml(state)}</option>`)
+  ].join("");
+}
+
+function cleanFormText(form, fieldName) {
+  const value = new FormData(form).get(fieldName);
+  return value === null ? "" : String(value).trim();
+}
+
+function cleanFormNumber(form, fieldName) {
+  const value = cleanFormText(form, fieldName);
+  return value.length === 0 ? NaN : Number(value);
+}
+
+function buildSuggestionSubmission(nm_aglom, nm_uf, cd_munic, lat_d, long_d) {
+  return {
+    type: "Feature",
+    properties: {
+      lat_d,
+      long_d,
+      nm_aglom,
+      nm_uf,
+      cd_munic
+    },
+    geometry: {
+      type: "Point",
+      coordinates: [long_d, lat_d]
+    },
+    submitted_at: new Date().toISOString(),
+    source: "KisangaQ_web"
+  };
+}
+
+function suggestionMailtoUri(submission) {
+  const jsonText = JSON.stringify(submission, null, 2);
+  const subject = `Nova comunidade quilombola: ${submission.properties.nm_aglom}`;
+  const body = [
+    "Segue o JSON de submissao gerado pelo KisangaQ.",
+    "",
+    jsonText
+  ].join("\n");
+
+  return `mailto:rodriguesmsb@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function setSuggestionStatus(message, type) {
+  const status = document.getElementById("submit-status");
+
+  if (!status) {
+    return;
+  }
+
+  status.textContent = message;
+  status.className = `submit-status is-visible is-${type}`;
+}
+
+function initSuggestionForm() {
+  const form = document.getElementById("suggestions-form");
+
+  if (!form) {
+    return;
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const nm_aglom = cleanFormText(form, "new_nm_aglom");
+    const nm_uf = cleanFormText(form, "new_uf");
+    const cd_munic = cleanFormText(form, "new_cd_munic");
+    const lat_d = cleanFormNumber(form, "new_lat");
+    const long_d = cleanFormNumber(form, "new_long");
+    const errors = [];
+
+    if (!nm_aglom) errors.push("nome da comunidade");
+    if (!nm_uf) errors.push("UF");
+    if (!cd_munic) errors.push("codigo municipal");
+    if (!Number.isFinite(lat_d) || lat_d < -90 || lat_d > 90) {
+      errors.push("latitude valida");
+    }
+    if (!Number.isFinite(long_d) || long_d < -180 || long_d > 180) {
+      errors.push("longitude valida");
+    }
+
+    if (errors.length > 0) {
+      setSuggestionStatus(`Preencha: ${errors.join(", ")}.`, "error");
+      return;
+    }
+
+    const submission = buildSuggestionSubmission(nm_aglom, nm_uf, cd_munic, lat_d, long_d);
+    setSuggestionStatus("JSON gerado e email aberto para envio.", "success");
+    window.location.href = suggestionMailtoUri(submission);
+  });
+}
+
+initSuggestionForm();
+
 fetch(communitiesFile)
   .then((response) => response.json())
   .then((data) => {
@@ -133,6 +243,7 @@ fetch(communitiesFile)
     document.getElementById("total-communities").textContent = numberFormatter.format(features.length);
     renderBreakdown("state-breakdown", countBy(features, "nm_uf"));
     renderBreakdown("biome-breakdown", countBy(features, "bioma"));
+    populateSuggestionUf(features);
     initMap(features);
   })
   .catch(() => {

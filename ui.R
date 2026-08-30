@@ -23,7 +23,7 @@ ui <- page_navbar(
   nav_panel("Início",   mod_home_ui("home")),
   nav_panel("Catálogo", mod_catalog_ui("catalog")),
   nav_panel("Historias com dados", mod_3dquilombolas_ui("comunidades")),
-  nav_panel("Fale conosco", mod_suggestions_ui("suggestions")),
+
  
 
   # Links externos no canto direito da barra de navegação

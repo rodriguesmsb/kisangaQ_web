@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>A violência em comunidades quilombolas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body>
+  <main class="story-container">
+    <section class="story-hero">
+      <p class="eyebrow">KISANGA-Q storytelling</p>
+      <h1>A violência em comunidades quilombolas</h1>
+      <p id="data-summary" class="lead-text">
+        Carregando o resumo dos indicadores de violência.
+      </p>
+    </section>
+
+    <section class="summary-grid" aria-live="polite">
+      <article class="metric-card metric-card--total">
+        <span id="violence-total">...</span>
+        <p>registros somados nas três variáveis.</p>
+      </article>
+
+      <article class="metric-card">
+        <span id="homicide-total">...</span>
+        <p>homicídios dolosos</p>
+      </article>
+
+      <article class="metric-card">
+        <span id="femicide-total">...</span>
+        <p>feminicídios</p>
+      </article>
+
+      <article class="metric-card">
+        <span id="suicide-total">...</span>
+        <p>suicídios</p>
+      </article>
+    </section>
+
+    <section class="visual-section">
+      <div class="section-heading">
+        <div>
+          <h2>Distribuição estadual</h2>
+          <p>
+            Os estados são preenchidos em cinco classes por quantis, do azul
+            para os valores mais baixos ao vermelho para os valores mais altos.
+          </p>
+        </div>
+
+        <label class="map-control" for="map-metric">
+          Indicador
+          <select id="map-metric">
+            <option value="homicidio_doloso">Homicídio doloso</option>
+            <option value="feminicidio">Feminicídio</option>
+            <option value="suicidio">Suicídio</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="map-shell">
+        <div id="map"></div>
+        <div id="map-legend" class="map-legend" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="visual-section">
+      <div class="section-heading">
+        <div>
+          <h2>Tendência do NDVI</h2>
+          <p id="ndvi-summary">
+            Carregando o resumo da mudança de NDVI.
+          </p>
+        </div>
+      </div>
+
+      <div id="ndvi-bars" class="chart-panel"></div>
+    </section>
+
+    <section class="visual-section">
+      <div class="section-heading">
+        <div>
+          <h2>NDVI e homicídio doloso</h2>
+          <p id="correlation-summary">
+            Calculando a correlação simples entre overall_slope e homicídio doloso.
+          </p>
+        </div>
+      </div>
+
+      <div class="correlation-grid">
+        <article class="correlation-card">
+          <span id="correlation-value">...</span>
+          <p>correlação de Pearson</p>
+          <small id="correlation-count"></small>
+        </article>
+
+        <div id="correlation-plot" class="chart-panel chart-panel--scatter"></div>
+      </div>
+    </section>
+
+    <section class="notes">
+      <h2>Limitações</h2>
+      <ul>
+        <li>Estados sem valores nas variáveis da história aparecem como sem dado.</li>
+        <li>Os totais estaduais descrevem registros agregados, não taxas populacionais.</li>
+        <li>A correlação simples não indica causalidade entre mudança ambiental e violência.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="story.js"></script>
+</body>
+</html>

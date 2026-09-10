@@ -190,3 +190,5 @@ mod_catalog_server <- function(id) {
     })
   })
 }
+
+## try to graph to represent variables inside the dataset

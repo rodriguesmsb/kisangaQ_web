@@ -2,7 +2,7 @@
 # mod_home.R — Página inicial
 #
 # Estrutura:
-#   mod_home_ui()     → Hero banner + seção "Sobre" + carrossel de notícias
+#   mod_home_ui()     → Hero banner + seção "Sobre" + notícias + instituições
 #   mod_home_server() → Lê data/news.csv e monta o carrossel Bootstrap 5
 #
 # Lógica do carrossel:
@@ -20,13 +20,33 @@ mod_home_ui <- function(id) {
 
     # ── Hero banner ──────────────────────────────────────────────────────────
     # Faixa de destaque no topo da página com logo e título
-    div(class = "hero-banner",
+    div(class = "hero-banner home-hero",
       div(class = "hero-content",
-        tags$img(src = "logo.png", height = "200px", style = "margin-bottom:1rem;"),
+        tags$img(src = "logo.png", class = "hero-logo", alt = "Logo KisangaQ", width = "150", height = "150"),
         h1("KisangaQ"),
         p("Uma plataforma de análise de dados para comunidades Quilombolas")
       )
     ),
+    tags$script(HTML("
+      (function() {
+        function syncHeroHeight() {
+          var navbar = document.querySelector('.navbar');
+          if (!navbar) return;
+          function updateHeight() {
+            document.documentElement.style.setProperty(
+              '--home-hero-height', (navbar.getBoundingClientRect().height * 1.5) + 'px'
+            );
+          }
+          updateHeight();
+          new ResizeObserver(updateHeight).observe(navbar);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', syncHeroHeight, { once: true });
+        } else {
+          syncHeroHeight();
+        }
+      })();
+    ")),
 
     # Corpo da página — container centralizado com conteúdo sobre o projeto e o carrossel de notícias
     div(class = "container-xl py-4",
@@ -36,9 +56,9 @@ mod_home_ui <- function(id) {
         div(class = "col-md-8 offset-md-2 text-center",
           h2("Sobre"),
           p(class = "lead",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            "O KISANGA-Q transforma dados sobre biodiversidade, clima, saúde e território em 
+            evidências para fortalecer o bem-viver quilombola. Como uma rede de saberes, a plataforma conecta ciência, 
+            políticas públicas e conhecimento comunitário para apoiar decisões mais justas e integradas."
           )
         )
       ),
@@ -48,6 +68,18 @@ mod_home_ui <- function(id) {
       h3("Últimas Notícias"),
       hr(),
       uiOutput(ns("news_carousel"))
+    ),
+
+    # Faixa reservada para as instituições participantes do projeto
+    tags$section(class = "hero-banner institutions-banner",
+      `aria-labelledby` = ns("institutions_title"),
+      div(class = "container-xl",
+        h2(id = ns("institutions_title"), "Instituições participantes"),
+        # Adicione aqui os nomes e logos das instituições quando disponíveis
+        div(class = "institutions-content",
+          p("Em breve, conheça as instituições que fazem parte do projeto.")
+        )
+      )
     )
   )
 }

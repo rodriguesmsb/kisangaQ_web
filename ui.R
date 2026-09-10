@@ -23,6 +23,7 @@ ui <- page_navbar(
   nav_panel("Início",   mod_home_ui("home")),
   nav_panel("Catálogo", mod_catalog_ui("catalog")),
   nav_panel("Historias com dados", mod_3dquilombolas_ui("comunidades")),
+  nav_panel("Equipe", mod_equipe_ui("equipe")),
 
  
 

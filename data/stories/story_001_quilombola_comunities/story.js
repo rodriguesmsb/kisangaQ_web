@@ -13,11 +13,11 @@ function cleanText(value, fallback = "Não informado") {
 
 function escapeHtml(value) {
   return cleanText(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll("\"", "&quot;")
-    .replaceAll("'", "&#039;");
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 function countBy(features, propertyName) {
@@ -76,7 +76,7 @@ function popupContent(properties) {
   `;
 }
 
-function initMap(features) {
+function initMap() {
   const map = L.map("map", {
     scrollWheelZoom: false
   }).setView([-14.2350, -51.9253], 4);
@@ -93,36 +93,91 @@ function initMap(features) {
     }) :
     L.layerGroup();
 
-  const bounds = [];
-
-  features.forEach((feature) => {
-    const properties = feature.properties;
-    const lat = Number(properties.lat_d);
-    const lng = Number(properties.long_d);
-
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
-      return;
-    }
-
-    const marker = L.circleMarker([lat, lng], {
-      radius: 5,
-      color: "#2c1a08",
-      weight: 1,
-      fillColor: "#c8731a",
-      fillOpacity: 0.78
-    });
-
-    marker.bindPopup(popupContent(properties));
-    marker.bindTooltip(cleanText(properties.nm_aglom, "Comunidade sem nome informado"));
-    layer.addLayer(marker);
-    bounds.push([lat, lng]);
-  });
-
   layer.addTo(map);
 
-  if (bounds.length > 0) {
-    map.fitBounds(bounds, { padding: [20, 20] });
+  return function updateMap(features) {
+    layer.clearLayers();
+    const bounds = [];
+
+    features.forEach((feature) => {
+      const properties = feature.properties;
+      const lat = Number(properties.lat_d);
+      const lng = Number(properties.long_d);
+
+      if (cleanText(properties.lat_d, "") === "" || cleanText(properties.long_d, "") === "" ||
+          !Number.isFinite(lat) || !Number.isFinite(lng) ||
+          Math.abs(lat) > 90 || Math.abs(lng) > 180) {
+        return;
+      }
+
+      const marker = L.circleMarker([lat, lng], {
+        radius: 5,
+        color: "#2c1a08",
+        weight: 1,
+        fillColor: "#c8731a",
+        fillOpacity: 0.78
+      });
+
+      marker.bindPopup(popupContent(properties));
+      marker.bindTooltip(cleanText(properties.nm_aglom, "Comunidade sem nome informado"));
+      layer.addLayer(marker);
+      bounds.push([lat, lng]);
+    });
+
+    if (bounds.length > 0) {
+      map.fitBounds(bounds, { padding: [20, 20], maxZoom: 12 });
+    } else {
+      map.setView([-14.2350, -51.9253], 4);
+    }
+    return bounds.length;
+  };
+}
+
+function initCommunityFilter(features) {
+  const select = document.getElementById("community-group");
+  const groups = [...new Set(features.map((feature) => cleanText(feature.properties.dados_pe14)))]
+    .sort((a, b) => a.localeCompare(b, "pt-BR"));
+
+  groups.forEach((group) => {
+    const option = document.createElement("option");
+    option.value = group;
+    option.textContent = group;
+    select.appendChild(option);
+  });
+
+  let updateMap;
+  try {
+    updateMap = initMap();
+  } catch (error) {
+    console.error("Falha ao inicializar o mapa:", error);
+    document.getElementById("map").textContent = "Não foi possível carregar o mapa. As contagens e o filtro continuam disponíveis.";
   }
+  function updateSelection() {
+    const selected = select.value;
+    const filtered = selected === "" ? features : features.filter(
+      (feature) => cleanText(feature.properties.dados_pe14) === selected
+    );
+    document.getElementById("total-communities").textContent = numberFormatter.format(filtered.length);
+    document.getElementById("total-description").textContent = selected === "" ?
+      "comunidades quilombolas mapeadas na base." : `comunidades do grupo ${selected}.`;
+    renderBreakdown("biome-breakdown", countBy(filtered, "bioma"));
+    let mapSummary = "Mapa indisponível.";
+    if (updateMap) {
+      try {
+        const mapped = updateMap(filtered);
+        mapSummary = `${numberFormatter.format(mapped)} com coordenadas válidas no mapa.`;
+      } catch (error) {
+        console.error("Falha ao atualizar o mapa:", error);
+      }
+    }
+    document.getElementById("filter-summary").textContent =
+      `${selected || "Todas as comunidades"}: ${numberFormatter.format(filtered.length)} comunidades; ` +
+      `${mapSummary} A distribuição por bioma corresponde a esta seleção.`;
+  }
+
+  select.addEventListener("change", updateSelection);
+  select.disabled = false;
+  updateSelection();
 }
 
 function populateSuggestionUf(features) {
@@ -236,18 +291,20 @@ function initSuggestionForm() {
 initSuggestionForm();
 
 fetch(communitiesFile)
-  .then((response) => response.json())
+  .then((response) => {
+    if (!response.ok) throw new Error("Não foi possível carregar os dados.");
+    return response.json();
+  })
   .then((data) => {
     const features = data.features || [];
 
-    document.getElementById("total-communities").textContent = numberFormatter.format(features.length);
-    renderBreakdown("state-breakdown", countBy(features, "nm_uf"));
-    renderBreakdown("biome-breakdown", countBy(features, "bioma"));
+    initCommunityFilter(features);
     populateSuggestionUf(features);
-    initMap(features);
   })
-  .catch(() => {
-    document.getElementById("total-communities").textContent = "0";
-    document.getElementById("state-breakdown").textContent = "Não foi possível carregar os dados.";
+  .catch((error) => {
+    console.error("Falha ao carregar as comunidades:", error);
+    document.getElementById("total-communities").textContent = "—";
+    document.getElementById("community-group").disabled = true;
+    document.getElementById("filter-summary").textContent = "Não foi possível carregar os dados.";
     document.getElementById("biome-breakdown").textContent = "Não foi possível carregar os dados.";
   });

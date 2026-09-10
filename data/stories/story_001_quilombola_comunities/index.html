@@ -5,7 +5,7 @@
   <title>Onde estão as comunidades Quilombolas?</title>
 
   <!-- load the CSS files -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=map-biome-1" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
@@ -21,8 +21,8 @@
       <p class="eyebrow">KISANGA-Q storytelling</p>
       <h1>Onde estão as comunidades Quilombolas?</h1>
       <p>
-        Esta história usa a base de comunidades quilombolas para mostrar quantas
-        comunidades aparecem no conjunto de dados e como elas se distribuem pelo
+        Esta história usa como referência as informações sobre comunidades quilombolas contidas no IBGE, INCRA e Fundação Palmares  para mostrar quantas
+        para contar como elas se distribuem pelo
         território brasileiro.
       </p>
     </section>
@@ -30,24 +30,11 @@
     <section class="story-stats" aria-live="polite">
       <article class="total-card">
         <span id="total-communities">...</span>
-        <p>comunidades quilombolas mapeadas na base.</p>
+        <p id="total-description">comunidades quilombolas mapeadas na base.</p>
       </article>
       <p class="lead-text">
-        A seguir, a mesma base é resumida por estados e biomas para revelar onde
-        essas comunidades se concentram antes de explorarmos sua localização no mapa.
+        Explore a localização das comunidades no mapa e sua distribuição por bioma. Selecione um grupo para atualizar o mapa e as contagens.
       </p>
-    </section>
-
-    <section class="breakdown-grid">
-      <article>
-        <h2>Distribuição por estado</h2>
-        <div id="state-breakdown" class="breakdown-list"></div>
-      </article>
-
-      <article>
-        <h2>Distribuição por bioma</h2>
-        <div id="biome-breakdown" class="breakdown-list"></div>
-      </article>
     </section>
 
     <section class="visual-section">
@@ -56,7 +43,20 @@
         O mapa mostra cada comunidade como ponto. Os agrupamentos facilitam a leitura
         das áreas com maior concentração de registros.
       </p>
-      <div id="map"></div>   
+      <div class="map-filter">
+        <label for="community-group">Grupo de comunidades</label>
+        <select id="community-group" aria-describedby="filter-summary" disabled>
+          <option value="">Todas as comunidades</option>
+        </select>
+      </div>
+      <p id="filter-summary" role="status">Carregando comunidades…</p>
+      <div class="map-biome-grid">
+        <div id="map"></div>
+        <article class="biome-panel" aria-labelledby="biome-title">
+          <h2 id="biome-title">Distribuição por bioma</h2>
+          <div id="biome-breakdown" class="breakdown-list"></div>
+        </article>
+      </div>
     </section>
 
     <section class="notes">
@@ -70,7 +70,7 @@
       <h2>Limitações</h2>
       <ul>
         <li>As contagens dependem da completude e da frequência de atualização da base.</li>
-        <li>A agregação por estado pode ocultar diferenças importantes dentro de cada território.</li>
+        <li>A agregação por bioma pode ocultar diferenças importantes dentro de cada território.</li>
         <li>Nem todos os registros têm todos os campos de identificação preenchidos.</li>
         <li>O mapa mostra distribuição espacial, não relações causais.</li>
       </ul>
@@ -117,6 +117,6 @@
   </main>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-  <script src="story.js"></script>
+  <script src="story.js?v=map-biome-1"></script>
 </body>
 </html>

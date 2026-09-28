@@ -15,8 +15,8 @@ mod_home_ui <- function(id) {
   # Cria namespace para evitar conflito de IDs entre módulos
   ns <- NS(id)
 
-  # A função tagList() retorna múltiplos elementos UI como um único objeto
-  tagList(
+  # A coluna ocupa a altura disponível e mantém as instituições no rodapé.
+  div(class = "home-page",
 
     # ── Hero banner ──────────────────────────────────────────────────────────
     # Faixa de destaque no topo da página com logo e título
@@ -33,8 +33,12 @@ mod_home_ui <- function(id) {
           var navbar = document.querySelector('.navbar');
           if (!navbar) return;
           function updateHeight() {
+            var navbarHeight = navbar.getBoundingClientRect().height;
             document.documentElement.style.setProperty(
-              '--home-hero-height', (navbar.getBoundingClientRect().height * 1.5) + 'px'
+              '--home-navbar-height', navbarHeight + 'px'
+            );
+            document.documentElement.style.setProperty(
+              '--home-hero-height', (navbarHeight * 1.5) + 'px'
             );
           }
           updateHeight();
@@ -49,7 +53,7 @@ mod_home_ui <- function(id) {
     ")),
 
     # Corpo da página — container centralizado com conteúdo sobre o projeto e o carrossel de notícias
-    div(class = "container-xl py-4",
+    div(class = "container-xl py-4 home-main",
 
       # Bloco "Sobre" — substitua o Lorem ipsum pelo texto real do projeto
       div(class = "row mb-5",
@@ -65,9 +69,11 @@ mod_home_ui <- function(id) {
 
       # Carrossel de notícias — o conteúdo é gerado dinamicamente pelo servidor a partir do CSV
       # O uiOutput é preenchido pelo servidor com o HTML do carrossel Bootstrap 5
-      h3("Últimas Notícias"),
-      hr(),
-      uiOutput(ns("news_carousel"))
+      tags$section(class = "home-news", `aria-labelledby` = ns("news_title"),
+        h3(id = ns("news_title"), "Últimas Notícias"),
+        hr(),
+        uiOutput(ns("news_carousel"))
+      )
     ),
 
     # Faixa reservada para as instituições participantes do projeto

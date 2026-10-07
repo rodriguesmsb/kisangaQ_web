@@ -6,7 +6,7 @@
 #   mod_home_server() → Lê data/news.csv e monta o carrossel Bootstrap 5
 #
 # Lógica do carrossel:
-#   - As notícias são agrupadas em slides de 3 cards por vez
+#   - As notícias são agrupadas em slides de 2 cards, empilhados no celular
 #   - O carrossel usa o componente nativo do Bootstrap 5 (já incluído pelo bslib)
 #   - Botões anterior/próximo navegam entre os grupos
 # =============================================================================
@@ -36,9 +36,6 @@ mod_home_ui <- function(id) {
             var navbarHeight = navbar.getBoundingClientRect().height;
             document.documentElement.style.setProperty(
               '--home-navbar-height', navbarHeight + 'px'
-            );
-            document.documentElement.style.setProperty(
-              '--home-hero-height', (navbarHeight * 1.5) + 'px'
             );
           }
           updateHeight();
@@ -90,7 +87,7 @@ mod_home_ui <- function(id) {
   )
 }
 
-# O servidor lê o CSV e constrói o carrossel Bootstrap 5 com grupos de 3 cards
+# O servidor lê o CSV e constrói o carrossel Bootstrap 5 com grupos de 2 cards
 mod_home_server <- function(id) {
   moduleServer(id, function(input, output, session) {
 
@@ -122,7 +119,7 @@ mod_home_server <- function(id) {
 
         # Cria um card para cada notícia do grupo
         cards_in_slide <- lapply(group_idx, function(i) {
-          div(class = "col-md-5",
+          div(class = "col-12 col-md-6",
             div(class = "card h-100 news-card",
               div(class = "card-header", df$title[i]),
               div(class = "card-body",
@@ -193,7 +190,7 @@ mod_home_server <- function(id) {
           setTimeout(function() {
             var el = document.getElementById('newsCarousel');
             if (el) {
-              new bootstrap.Carousel(el, { interval: 4000, ride: 'carousel' });
+              new bootstrap.Carousel(el, { interval: false, touch: true });
             }
           }, 100);
         "))

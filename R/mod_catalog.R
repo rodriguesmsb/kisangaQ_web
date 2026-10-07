@@ -11,12 +11,13 @@
 
 mod_catalog_ui <- function(id) {
   ns <- NS(id)  # namespace do módulo
-  div(class = "container-xl py-4",
+  div(class = "container-xl py-4 catalog-page",
 
     # ── Caixas de resumo ────────────────────────────────────────────────────
     # Mostram contagens gerais independentemente dos filtros ativos
     layout_columns(
-      col_widths = c(4, 4, 4),
+      col_widths = breakpoints(xs = c(12, 12, 12), md = c(4, 4, 4)),
+      fill = FALSE,
       value_box(
         title    = "Conjuntos de dados",
         value    = textOutput(ns("n_datasets")),
@@ -54,7 +55,9 @@ mod_catalog_ui <- function(id) {
 
     # ── Tabela ──────────────────────────────────────────────────────────────
     # Clique em uma linha para ver os detalhes completos abaixo
-    DTOutput(ns("table")),
+    p(class = "catalog-table-hint text-muted small",
+      "Deslize a tabela para os lados para ver todas as colunas. Toque em uma linha para ver os detalhes."),
+    DTOutput(ns("table"), width = "100%"),
 
     # ── Painel de detalhe ───────────────────────────────────────────────────
     # Exibido apenas quando uma linha estiver selecionada na tabela
@@ -118,6 +121,7 @@ mod_catalog_server <- function(id) {
         options   = list(
           pageLength = 10,
           dom        = "tip",
+          scrollX    = TRUE,
           language   = list(
             paginate   = list(previous = "Anterior", `next` = "Próximo"),
             info       = "Exibindo _START_ a _END_ de _TOTAL_ registros",

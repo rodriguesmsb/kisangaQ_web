@@ -58,6 +58,24 @@ kisangaQ_web/data/samples
 
 Em desenvolvimento.
 
+## Publicação no shinyapps.io
+
+Com o projeto como diretório de trabalho, execute no console local do R:
+
+```r
+rsconnect::deployApp(forceUpdate = TRUE)
+```
+
+Mantenha esse comando fora de `global.R`, `ui.R`, `server.R` e dos módulos em
+`R/`. Esses arquivos são executados ao iniciar o aplicativo; uma chamada de
+publicação neles pode impedir a inicialização no shinyapps.io.
+
+Para consultar os logs do aplicativo publicado:
+
+```r
+rsconnect::showLogs(entries = 100, streaming = FALSE)
+```
+
 ## Licença
 
 
@@ -65,4 +83,3 @@ Em desenvolvimento.
 
 Moreno Rodrigues  
 GitHub: [@rodriguesmsb](https://github.com/rodriguesmsb)
-

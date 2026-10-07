@@ -1,9 +1,13 @@
 
 ui <- page_navbar(
   title = tags$span(
-    tags$img(src = "logo.png", height = "75px", style = "margin-right:8px; vertical-align:middle;"),
+    class = "navbar-brand-content",
+    tags$img(src = "logo.png", class = "navbar-logo", alt = "Logo KisangaQ"),
     "KISANGA-Q"
   ),
+  fillable = FALSE,
+  lang = "pt-BR",
+  navbar_options = navbar_options(collapsible = TRUE, theme = "dark"),
 
   # Personalização do tema e inclusão de CSS customizado
   theme = bs_theme(

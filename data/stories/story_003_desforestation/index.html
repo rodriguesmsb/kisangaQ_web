@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aglomerados quilombolas e desmatamento</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body>
+  <main class="story-container">
+    <section class="story-hero">
+      <p class="eyebrow">KISANGA-Q storytelling</p>
+      <h1>Aglomerados quilombolas e desmatamento</h1>
+      <p class="hero-question">
+        Municípios com mais aglomerados quilombolas perdem mais vegetação?
+      </p>
+      <p id="data-summary" class="lead-text">
+        Carregando o resumo dos dados municipais.
+      </p>
+    </section>
+
+    <section class="summary-grid" aria-live="polite">
+      <article class="metric-card metric-card--total">
+        <span id="agglomerates-total">...</span>
+        <p>aglomerados quilombolas mapeados nos municípios analisados.</p>
+      </article>
+
+      <article class="metric-card">
+        <span id="municipalities-with">...</span>
+        <p>municípios com pelo menos um aglomerado</p>
+      </article>
+
+      <article class="metric-card metric-card--loss">
+        <span id="loss-with">...</span>
+        <p>dos municípios <strong>com</strong> aglomerados têm NDVI em queda</p>
+      </article>
+
+      <article class="metric-card">
+        <span id="loss-without">...</span>
+        <p>dos municípios <strong>sem</strong> aglomerados têm NDVI em queda</p>
+      </article>
+    </section>
+
+    <section class="story-text">
+      <h2>Como medimos o desmatamento</h2>
+      <p>
+        O indicador <code>overall_slope</code> é a tendência do NDVI (índice de
+        vegetação por diferença normalizada) ao longo do período analisado em cada
+        município. Valores <strong>negativos</strong> indicam perda de cobertura
+        vegetal e são usados aqui como sinal de desmatamento. Valores
+        <strong>positivos</strong> indicam ganho ou recuperação da vegetação.
+      </p>
+    </section>
+
+    <section class="visual-section">
+      <div class="section-heading">
+        <div>
+          <h2>Onde estão os aglomerados e onde a vegetação recua</h2>
+          <p>
+            Alterne entre os dois indicadores para comparar a localização dos
+            aglomerados quilombolas com a tendência do NDVI em cada município.
+          </p>
+        </div>
+
+        <label class="map-control" for="map-metric">
+          Indicador
+          <select id="map-metric">
+            <option value="overall_slope">Tendência do NDVI</option>
+            <option value="number_algomerated">Aglomerados quilombolas</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="map-shell">
+        <div id="map"></div>
+        <div id="map-legend" class="map-legend" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="visual-section">
+      <div class="section-heading">
+        <div>
+          <h2>Quanto mais aglomerados, mais municípios em queda</h2>
+          <p id="classes-summary">
+            Calculando a tendência por faixa de aglomerados.
+          </p>
+        </div>
+
+        <label class="map-control" for="biome-filter">
+          Bioma
+          <select id="biome-filter">
+            <option value="">Todos os biomas</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="classes-chart" class="chart-panel"></div>
+    </section>
+
+    <section class="visual-section">
+      <div class="section-heading">
+        <div>
+          <h2>A relação município a município</h2>
+          <p id="correlation-summary">
+            Calculando a correlação entre aglomerados quilombolas e overall_slope.
+          </p>
+        </div>
+      </div>
+
+      <div class="correlation-grid">
+        <div class="correlation-stack">
+          <article class="correlation-card">
+            <span id="spearman-value">...</span>
+            <p>correlação de Spearman (ρ)</p>
+            <small id="pearson-value"></small>
+            <small id="correlation-count"></small>
+          </article>
+
+          <article class="correlation-note">
+            <p>
+              Cada ponto é um município. A linha laranja liga a mediana do NDVI em
+              cada faixa de aglomerados. Abaixo da linha tracejada a vegetação
+              está em queda.
+            </p>
+          </article>
+        </div>
+
+        <div id="correlation-plot" class="chart-panel chart-panel--scatter"></div>
+      </div>
+    </section>
+
+    <section class="visual-section">
+      <div class="section-heading">
+        <div>
+          <h2>O padrão se repete dentro de cada bioma?</h2>
+          <p id="biome-summary">
+            Calculando a comparação por bioma.
+          </p>
+        </div>
+      </div>
+
+      <div id="biome-chart" class="chart-panel"></div>
+    </section>
+
+    <section class="answer">
+      <p class="eyebrow">Resposta</p>
+      <h2 id="answer-title">Existe relação?</h2>
+      <p id="answer-text">Calculando.</p>
+    </section>
+
+    <section class="notes">
+      <h2>Limitações</h2>
+      <ul>
+        <li>A tendência do NDVI é um indicador indireto: ela mede mudança no vigor da vegetação, que pode vir de desmatamento, mas também de seca, queimadas, expansão agrícola ou mudanças no uso do solo.</li>
+        <li>A análise é municipal. Ela não indica se a perda de vegetação ocorre dentro, ao redor ou longe dos territórios quilombolas.</li>
+        <li>Correlação não é causalidade. Os aglomerados podem estar concentrados em regiões que já sofrem maior pressão sobre a vegetação, como a fronteira agrícola no Maranhão e no Pará.</li>
+        <li>Municípios sem valores de aglomerados ou de NDVI aparecem como sem dado e ficam fora dos cálculos.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="story.js"></script>
+</body>
+</html>

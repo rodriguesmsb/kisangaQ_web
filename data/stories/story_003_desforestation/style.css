@@ -497,16 +497,6 @@ code {
   stroke-width: 2;
 }
 
-.scatter-label {
-  fill: var(--ink);
-  font-size: 0.74rem;
-  font-weight: 800;
-  paint-order: stroke;
-  stroke: #ffffff;
-  stroke-linejoin: round;
-  stroke-width: 4px;
-}
-
 /* Biomas */
 
 #biome-chart {

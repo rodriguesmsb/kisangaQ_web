@@ -516,7 +516,6 @@ function renderScatterPlot(container, rows, groups) {
   const yScale = scaleLinear(minY - yPadding, maxY + yPadding, margin.top + innerHeight, margin.top);
   const xTicks = [0, 1, 2, 5, 10, 20, 50, 100, 200].filter((tick) => tick <= maxCount * 1.1);
   const yTicks = tickValues(minY, maxY, 5);
-  const topRows = rows.slice().sort((a, b) => b.count - a.count).slice(0, 1);
 
   const grid = yTicks.map((tick) => `
     <g class="axis-grid">
@@ -557,10 +556,6 @@ function renderScatterPlot(container, rows, groups) {
     </circle>
   `).join("");
 
-  const labels = topRows.map((row) => `
-    <text class="scatter-label" x="${xScale(Math.log1p(row.count)) - 8}" y="${yScale(row.slope) - 8}" text-anchor="end">${escapeHtml(row.name)}</text>
-  `).join("");
-
   container.innerHTML = `
     <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Dispersão entre número de aglomerados quilombolas e tendência do NDVI por município">
       <rect class="plot-background" x="${margin.left}" y="${margin.top}" width="${innerWidth}" height="${innerHeight}"></rect>
@@ -572,7 +567,6 @@ function renderScatterPlot(container, rows, groups) {
       <g class="scatter-points">${points}</g>
       ${medianLine}
       ${medianMarkers}
-      ${labels}
       <text class="axis-title" x="${margin.left + innerWidth / 2}" y="${height - 10}" text-anchor="middle">aglomerados quilombolas no município (escala logarítmica)</text>
       <text class="axis-title" transform="translate(18 ${margin.top + innerHeight / 2}) rotate(-90)" text-anchor="middle">tendência do NDVI (overall_slope)</text>
     </svg>

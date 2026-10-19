@@ -10,3 +10,7 @@ NDVI,Ambiente,2010 – 2026,Aberto,Média mensal do indice de vegetação normal
 Queimadas,Ambiente,2020 – 2025,Aberto,Média mensal de focos de queimadas para os municipios brasileiros,,INPE,burn_sample.csv
 Populaçao Quilombola,Populacional,2022,Aberto,População quilombola em comunidades quilombolas,,IBGE,
 Habitantes Quiliombola,Populacional,2022,Aberto,Total de habitantes em comunidades quilombolas,,IBGE,
+SINASC,Nascimento,2020 – 2026,Aberto,Informações sobre nascidos vivos no Brasil,,DATASUS,
+SIM,Óbitos,2020 – 2026,Aberto,Informaçoes sobre óbitos no Brasil,,DATASUS,
+Mortalidade materno infantil,Óbitos,2020 – 2026,Aberto,Informações sobre óbitos materno infantil no Brasil,,DATASUS,
+Indicadores Saúde mental,Saúde mental,,,Informaçoes sobre saúde mental na população quilombola do Ceára,,Cosqui,smqc_sample.csv

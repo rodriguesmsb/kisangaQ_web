@@ -1,4 +1,4 @@
-const communitiesFile = "comunidades_quilombola.json";
+const communitiesFile = "001_data_for_story.json";
 
 const numberFormatter = new Intl.NumberFormat("pt-BR");
 
